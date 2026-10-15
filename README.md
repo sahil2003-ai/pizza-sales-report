@@ -1,41 +1,28 @@
 # Pizza Sales Analysis with SQL
 
-A SQL portfolio project exploring pizza-order data to answer practical sales and product-performance questions.
+A SQL portfolio project exploring pizza orders, products, and sales.
 
-## Project Goal
-Use SQL to turn transactional order data into useful summaries for a pizza business, such as sales patterns, popular products, order volume, and revenue drivers.
+## Step-by-step workflow
 
-## Analysis Areas
-The current project description confirms SQL-based analysis of pizza sales. Extend or document the queries under these themes where supported by the existing SQL:
-- Revenue and order-volume trends
-- Best- and lowest-performing pizzas
-- Sales by pizza category and size
-- Average order value and product contribution
-- Time-based patterns in orders
+1. Review `orders.csv`, `order_details.csv`, `pizzas.csv`, and `pizza_types.csv` to understand the fields and relationships.
+2. Import the CSV files into your SQL database and check that the table and column names match `pizzahut.sql`.
+3. Inspect missing values, duplicate records, dates, prices, quantities, and join keys.
+4. Run the queries in `pizzahut.sql` to explore the sales questions implemented in the script.
+5. Validate totals against the source files and check for duplicate rows introduced by joins.
+6. Summarize the results in a table or chart and explain the business meaning of each finding.
 
-> **Note:** Include only findings that are calculated by the SQL in this repository. No numerical results are claimed here because they have not been independently verified.
+## Project files
+- `orders.csv` — order-level data
+- `order_details.csv` — order line items
+- `pizzas.csv` — pizza size and price details
+- `pizza_types.csv` — pizza names and categories
+- `pizzahut.sql` — SQL analysis
 
-## Tools
-- SQL
-- Relational querying, aggregation, filtering, and joins (where used in the query files)
+## Skills
+SQL, joins, aggregation, data validation, and sales analysis.
 
-## Repository Contents
-Review the repository files to locate the dataset and SQL scripts. Add a short file map here if you reorganize the project.
+## Screenshots
+No image files are currently listed in this repository. If you upload query-output or dashboard screenshots, save them in an `images/` folder and embed them here, for example: `![Query result](images/query-result.png)`.
 
-## How to Explore
-1. Open the SQL script(s) in this repository.
-2. Check the source dataset and column definitions.
-3. Run the queries in a compatible SQL environment after loading the data.
-4. Compare the results with the business questions above.
-
-## Skills Demonstrated
-SQL querying, data aggregation, business-question translation, and sales analysis.
-
-## Future Improvements
-- Add schema and data-loading instructions.
-- Document the business question above each query.
-- Include verified result tables or dashboard screenshots.
-- Add data-quality checks and clarify how revenue is calculated.
-
----
-Created as a learning and portfolio project. Interpret results in the context of the dataset and its assumptions.
+## Next improvements
+Document the SQL dialect and database setup, add screenshots, and include only findings verified from the SQL outputs.
