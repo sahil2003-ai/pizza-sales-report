@@ -47,10 +47,20 @@ Raw order records are difficult to interpret without joining orders, order lines
 
 ## 📂 Dataset
 
-Source files are included in the repository: orders.csv, order_details.csv, pizzas.csv, and pizza_types.csv. Row counts and field definitions should be derived from those files.
+The CSV files available in the repository have these verified dimensions:
 
-- **Privacy and licensing:** Check source terms and avoid publishing personal, sensitive, or restricted data.
-- **Preprocessing:** Follow the actual SQL/notebook/report implementation; do not assume cleaning steps or row counts that have not been verified.
+| File | Data rows | Columns |
+|---|---:|---:|
+| `orders.csv` | 21,350 | 3 |
+| `pizzas.csv` | 96 | 4 |
+| `pizza_types.csv` | 32 | 4 |
+| `order_details.csv` | Not confirmed in this review | Not confirmed |
+
+The repository includes order dates/times, pizza size/pricing, and pizza type/category/ingredients. The original publisher/license should be documented.
+
+### SQL compatibility issues to resolve
+
+The SQL file references table/column names that do not exactly match the visible CSV headers: it uses `orders_details`, `order_date`, `order_time`, and `quatity`, while the CSV headers include `order_details`, `date`, `time`, and the line-item quantity column must be confirmed from the full file. Create explicit table mappings or update the queries to match the actual schema before treating query results as verified.
 
 ## 🛠️ Tech Stack
 
@@ -102,13 +112,17 @@ Open pizzahut.sql in your SQL client, select the database containing the importe
 
 ## 📊 Results and Insights
 
-### Key Findings
+### Verified data details
 
-Add verified results from actual query output. No numerical findings are asserted in this README.
+- **Orders:** 21,350 rows in `orders.csv`.
+- **Pizza variants/prices:** 96 rows in `pizzas.csv`.
+- **Pizza types:** 32 rows in `pizza_types.csv`.
 
-### Evaluation
+### SQL analysis scope
 
-For analytics projects, reconcile key totals and document metric definitions. For ML projects, report the baseline, split strategy, relevant metrics, and held-out evaluation results. Do not include unverified scores or business impact claims.
+`pizzahut.sql` defines queries/views for order count, revenue, highest-priced pizza, most common size, top pizza types, category quantities, hourly orders, average daily quantity, revenue contribution, cumulative revenue, and top pizzas by category.
+
+**No SQL output values were available to verify in this review**, so total revenue and top-selling pizzas are not stated as results. First align table/column names with the CSV schema, run the SQL against the imported data, then record the returned values here.
 
 ## 🖼️ Screenshots
 
@@ -122,8 +136,10 @@ No image files were confirmed for this repository during this update. If you hav
 
 ## ⚠️ Limitations
 
-- Results depend on correct table imports and join keys.
-- Only questions implemented in the SQL file should be described as completed.
+- The full row count/schema of `order_details.csv` could not be confirmed from the connector response in this review.
+- The SQL script contains table/column naming mismatches that need resolution before execution.
+- Sales results are not claimed until the queries run successfully against the actual data.
+- Dataset provenance and license should be documented.
 
 ## 🚀 Future Improvements
 
