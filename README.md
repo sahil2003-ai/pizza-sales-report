@@ -1,164 +1,70 @@
 # Pizza Sales Analysis with SQL
 
-> SQL analysis of pizza orders and product data to answer sales and product-performance questions.
+A relational-data analysis project that uses SQL to explore pizza orders, product mix, order timing, and revenue contribution.
 
-![Status](https://img.shields.io/badge/Status-Portfolio--Project-blue)
+## Project overview
 
-## 📌 Table of Contents
+The project combines four CSV tables with SQL views to answer questions about order volume, popular sizes and pizza types, category mix, hourly demand, and revenue trends.
 
-- [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Objectives](#objectives)
-- [Features](#features)
-- [Dataset](#dataset)
-- [Tech Stack](#tech-stack)
-- [Project Workflow](#project-workflow)
-- [Repository Structure](#repository-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Results and Insights](#results-and-insights)
-- [Screenshots](#screenshots)
-- [Challenges and Solutions](#challenges-and-solutions)
-- [Limitations](#limitations)
-- [Future Improvements](#future-improvements)
-- [What I Learned](#what-i-learned)
-- [Author](#author)
-- [License](#license)
+## Repository contents
 
-## 📖 Overview
+| File | Purpose |
+|---|---|
+| `orders.csv` | Order identifiers and order date/time |
+| `order_details.csv` | Order line items and quantities |
+| `pizzas.csv` | Pizza SKU, size, and price |
+| `pizza_types.csv` | Pizza names, categories, and ingredient descriptions |
+| `pizzahut.sql` | SQL views for sales and product analysis |
 
-SQL analysis of pizza orders and product data to answer sales and product-performance questions. This README documents the intended workflow and the files available in the repository. Verify all outputs against the current code and data before using them as evidence.
+## Dataset checks
 
-## 🎯 Problem Statement
-
-Raw order records are difficult to interpret without joining orders, order lines, prices, sizes, and pizza categories.
-
-## 🎯 Objectives
-
-- Relate order, order-line, pizza, and category data correctly.
-- Use SQL aggregations to answer sales questions represented in the query file.
-- Validate totals and communicate reproducible findings.
-
-## ✨ Features
-
-- Multi-table SQL analysis using the provided CSV files.
-- Sales and product summaries where implemented in the SQL script.
-- Separate source data files for orders, pizzas, and pizza types.
-
-## 📂 Dataset
-
-The CSV files available in the repository have these verified dimensions:
-
-| File | Data rows | Columns |
+| File | Verified rows | Verified columns |
 |---|---:|---:|
 | `orders.csv` | 21,350 | 3 |
 | `pizzas.csv` | 96 | 4 |
 | `pizza_types.csv` | 32 | 4 |
 | `order_details.csv` | Not confirmed in this review | Not confirmed |
 
-The repository includes order dates/times, pizza size/pricing, and pizza type/category/ingredients. The original publisher/license should be documented.
+The source and reuse license should be documented before redistribution.
 
-### SQL compatibility issues to resolve
+## Analysis included in the SQL file
 
-The SQL file references table/column names that do not exactly match the visible CSV headers: it uses `orders_details`, `order_date`, `order_time`, and `quatity`, while the CSV headers include `order_details`, `date`, `time`, and the line-item quantity column must be confirmed from the full file. Create explicit table mappings or update the queries to match the actual schema before treating query results as verified.
+The SQL script defines views for:
+- Total order count and estimated sales revenue.
+- Highest-priced pizza and most frequently ordered size.
+- Top five pizza types by quantity and category-level quantity totals.
+- Order counts by hour and average pizzas ordered per day.
+- Top pizza types by revenue and category revenue contribution.
+- Cumulative daily revenue and top three pizzas by revenue within each category.
 
-## 🛠️ Tech Stack
+These are **analysis definitions**, not reported business outcomes. No numerical SQL result values are claimed here because the queries have not been successfully executed against a confirmed schema in this review.
 
-| Technology | Purpose |
-|---|---|
-| SQL | Joins, filters, aggregation, and business queries |
-| CSV | Input tables |
+## Tech stack
 
-## 🔄 Project Workflow
+- SQL (script uses MySQL-style functions such as `HOUR()` and `LIMIT`)
+- CSV data sources
+- Relational joins, grouping, aggregation, window functions, and views
 
-1. Inspect all four CSV files, columns, keys, and data types.
-2. Import the CSV files into a SQL database and align table names with pizzahut.sql.
-3. Check missing values, duplicate keys, prices, quantities, and date formats.
-4. Run each query in pizzahut.sql and note the business question it answers.
-5. Reconcile key totals with source data and inspect joins for duplicate multiplication.
-6. Write findings only after query outputs have been checked.
+## Run the project
 
-## 🗂️ Repository Structure
+1. Create a database in a MySQL-compatible environment.
+2. Import the four CSV files, confirming their actual headers and data types.
+3. Update the script's table and column identifiers to match the imported schema.
+4. Execute `pizzahut.sql` and inspect each view's output.
+5. Reconcile order totals and revenue calculations against the source data.
 
-```text
-pizza-sales-report/
-├── pizzahut.sql
-├── orders.csv
-├── order_details.csv
-├── pizzas.csv
-└── pizza_types.csv
-└── README.md
-```
+## Validation issues to resolve
 
-The list above highlights known project files and folders; inspect the repository for the complete current structure.
+The current script uses names such as `orders_details`, `order_date`, `order_time`, and `quatity`. These may not match the CSV filename/header names, so confirm the exact imported table and column schema before execution. Also verify that revenue is computed from the intended unit price and quantity and that joins do not multiply order lines.
 
-## ⚙️ Installation
+## Evidence and limitations
 
-### Prerequisites
+No screenshots or saved query-result exports were present in the repository file inventory. Consequently, total revenue, peak order hour, most popular pizza, and category rankings are not asserted as verified findings.
 
-- Install the tools listed in the Tech Stack that apply to this project.
-- For Python projects, use a Python version compatible with the dependencies actually imported by the code.
-- For Power BI projects, use Power BI Desktop.
+## Skills demonstrated
 
-### Setup
+SQL joins, aggregation, views, ranking/window functions, relational data modeling, and business-question framing.
 
-No Python environment is required for the SQL analysis. Import the four CSV files into a database compatible with the SQL dialect used in pizzahut.sql.
+## Author
 
-Do not run generic commands that do not match the files in this repository. Confirm the data paths, database dialect, and package versions before execution.
-
-## ▶️ Usage
-
-Open pizzahut.sql in your SQL client, select the database containing the imported tables, and run the queries in order where dependencies exist.
-
-## 📊 Results and Insights
-
-### Verified data details
-
-- **Orders:** 21,350 rows in `orders.csv`.
-- **Pizza variants/prices:** 96 rows in `pizzas.csv`.
-- **Pizza types:** 32 rows in `pizza_types.csv`.
-
-### SQL analysis scope
-
-`pizzahut.sql` defines queries/views for order count, revenue, highest-priced pizza, most common size, top pizza types, category quantities, hourly orders, average daily quantity, revenue contribution, cumulative revenue, and top pizzas by category.
-
-**No SQL output values were available to verify in this review**, so total revenue and top-selling pizzas are not stated as results. First align table/column names with the CSV schema, run the SQL against the imported data, then record the returned values here.
-
-## 🖼️ Screenshots
-
-No image files were confirmed for this repository during this update. If you have screenshots, upload them into an `images/` folder, then embed each real path here with a short caption. Do not use placeholder image paths.
-
-## 🧩 Challenges and Solutions
-
-| Challenge | Solution / validation approach |
-|---|---|
-| Joining multiple tables | Validate key relationships and compare totals before and after joins. |
-
-## ⚠️ Limitations
-
-- The full row count/schema of `order_details.csv` could not be confirmed from the connector response in this review.
-- The SQL script contains table/column naming mismatches that need resolution before execution.
-- Sales results are not claimed until the queries run successfully against the actual data.
-- Dataset provenance and license should be documented.
-
-## 🚀 Future Improvements
-
-- [ ] Document the database engine and import commands.
-- [ ] Add query-output screenshots and a verified findings table.
-- [ ] Explain each query's business purpose.
-
-## 📚 What I Learned
-
-- Relational joins and aggregation.
-- Validating sales calculations against source data.
-
-## 👤 Author
-
-**Sahil Gaikwad**
-
-- GitHub: [sahil2003-ai](https://github.com/sahil2003-ai)
-- LinkedIn: [Sahil Gaikwad](https://www.linkedin.com/in/sahil-gaikwad-a76b7224a/)
-
-## 📄 License
-
-No license information was verified; check the repository before reusing the data.
+Sahil Gaikwad · [GitHub](https://github.com/sahil2003-ai) · [LinkedIn](https://www.linkedin.com/in/sahil-gaikwad-a76b7224a/)
